@@ -94,6 +94,7 @@ class Blog extends Model
     public function getNextPost()
     {
         $blogPost = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'asc')
                 ->where('id', '>', $this->id)
                 ->first();
         if (!isset($blogPost->id)) {
@@ -122,6 +123,7 @@ class Blog extends Model
     public function getPreviousPost()
     {
         $blogPost = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'asc')
                 ->where('id', '<', $this->id)
                 ->orderBy('id','desc')->first();
         

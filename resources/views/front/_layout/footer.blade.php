@@ -35,21 +35,13 @@
             </div>
             <div class="col-md-4">
                 <div class="latest-posts">
-                    <a href="blog-post.html">
+                    @foreach($footerBlogs as $blog)
+                    <a href="{{$blog->getFrontUrl()}}">
                         <div class="post d-flex align-items-center">
-                            <div class="image"><img src="{{url('/themes/front/img/small-thumbnail-1.jpg')}}" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Hotels for all budgets</strong><span class="date last-meta">October 26, 2016</span></div>
+                            <div class="image"><img src="{{$blog->getPhoto1ThumbUrl()}}" alt="..." class="img-fluid"></div>
+                            <div class="title"><strong>{{$blog->name}}</strong><span class="date last-meta">{{($blog->created_at)->format('F d, Y')}}</span></div>
                         </div></a>
-                    <a href="blog-post.html">
-                        <div class="post d-flex align-items-center">
-                            <div class="image"><img src="{{url('/themes/front/img/small-thumbnail-2.jpg')}}" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Great street atrs in London</strong><span class="date last-meta">October 26, 2016</span></div>
-                        </div></a>
-                    <a href="blog-post.html">
-                        <div class="post d-flex align-items-center">
-                            <div class="image"><img src="{{url('/themes/front/img/small-thumbnail-3.jpg')}}" alt="..." class="img-fluid"></div>
-                            <div class="title"><strong>Best coffee shops in Sydney</strong><span class="date last-meta">October 26, 2016</span></div>
-                        </div></a>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -55,6 +55,10 @@ class BlogsController extends Controller {
                 ->orderBy('priority', 'DESC')
                 ->take(4)
                 ->get();
+        
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();   
 
 
 
@@ -65,6 +69,7 @@ class BlogsController extends Controller {
             'mostUsedTags' => $mostUsedTags,
             'latestPosts' => $latestPosts,
             'footerCategories' => $footerCategories,
+            'footerBlogs' => $newestFooterBlogPosts
         ]);
     }
 
@@ -114,7 +119,9 @@ class BlogsController extends Controller {
 
         $commentsCount = $comments->count();
 
-
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();  
 
 
         return view('front.blogs.single', [
@@ -125,6 +132,7 @@ class BlogsController extends Controller {
             'footerCategories' => $footerCategories,
             'comments' => $comments,
             'commentsCount' => $commentsCount,
+            'footerBlogs' => $newestFooterBlogPosts
         ]);
     }
 
@@ -168,6 +176,10 @@ class BlogsController extends Controller {
                 ->take(4)
                 ->get();
 
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();  
+        
         return view('front.blogs.categories', [
             'category' => $category,
             'blogs' => $blogs,
@@ -175,6 +187,7 @@ class BlogsController extends Controller {
             'mostUsedTags' => $mostUsedTags,
             'latestPosts' => $latestPosts,
             'footerCategories' => $footerCategories,
+            'footerBlogs' => $newestFooterBlogPosts
         ]);
     }
 
@@ -212,6 +225,10 @@ class BlogsController extends Controller {
                 ->take(4)
                 ->get();
 
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();  
+        
         return view('front.blogs.author', [
             'user' => $author,
             'blogs' => $blogs,
@@ -219,6 +236,7 @@ class BlogsController extends Controller {
             'categories' => $categories,
             'mostUsedTags' => $mostUsedTags,
             'footerCategories' => $footerCategories,
+            'footerBlogs' => $newestFooterBlogPosts
         ]);
     }
 
@@ -267,6 +285,10 @@ class BlogsController extends Controller {
                 ->take(4)
                 ->get();
 
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();  
+        
         return view('front.blogs.tag', [
             'tag' => $tag,
             'listingBlogs' => $listingBlogs,
@@ -275,6 +297,7 @@ class BlogsController extends Controller {
             'mostUsedTags' => $mostUsedTags,
             'latestPosts' => $latestPosts,
             'footerCategories' => $footerCategories,
+            'footerBlogs' => $newestFooterBlogPosts
         ]);
     }
 
@@ -322,6 +345,10 @@ class BlogsController extends Controller {
                 ->take(4)
                 ->get();
 
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();  
+        
         return view('front.blogs.search', [
             'title' => $title,
             'blogs' => $blogs,
@@ -329,6 +356,7 @@ class BlogsController extends Controller {
             'categories' => $categories,
             'mostUsedTags' => $mostUsedTags,
             'footerCategories' => $footerCategories,
+            'footerBlogs' => $newestFooterBlogPosts
         ]);
     }
 

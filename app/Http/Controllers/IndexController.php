@@ -56,6 +56,10 @@ class IndexController extends Controller
                 ->take(4)
                 ->get();
         
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();   
+        
         return view ('front.index.index', [
             'sliders' => $sliders,
             'introBlogPosts' => $introBlogPosts,
@@ -64,6 +68,7 @@ class IndexController extends Controller
             'latestBlogs3' => $latestBlogs3,
             'latestBlogs4' => $latestBlogs4,
             'footerCategories' => $footerCategories,
+            'footerBlogs' => $newestFooterBlogPosts
             
         ]);
     }

@@ -12,7 +12,7 @@
                 <div class="post-details">
                     <div class="post-meta d-flex justify-content-between">
                         <div class="date">{{date('d M | Y', strtotime($latestBlog1->created_at))}}</div>
-                        <div class="category"><a href="blog-category.html">{{optional($latestBlog1->blogPostCategory)->name}}</a></div>
+                        <div class="category"><a href="{{$latestBlog1->getCategoryUrl()}}">{{optional($latestBlog1->blogPostCategory)->name}}</a></div>
                     </div><a href="{{$latestBlog1->getFrontUrl()}}">
                         <h3 class="h4">{{$latestBlog1->name}}</h3></a>
                     <p class="text-muted">{{$latestBlog1->description}}</p>
@@ -27,7 +27,7 @@
                 <div class="post-details">
                     <div class="post-meta d-flex justify-content-between">
                         <div class="date">{{date('d M | Y', strtotime($latestBlog2->created_at))}}</div>
-                        <div class="category"><a href="blog-category.html">{{optional($latestBlog2->blogPostCategory)->name}}</a></div>
+                        <div class="category"><a href="{{$latestBlog2->getCategoryUrl()}}">{{optional($latestBlog2->blogPostCategory)->name}}</a></div>
                     </div><a href="{{$latestBlog2->getFrontUrl()}}">
                         <h3 class="h4">{{$latestBlog2->name}}</h3></a>
                     <p class="text-muted">{{$latestBlog2->description}}</p>
@@ -42,7 +42,7 @@
                 <div class="post-details">
                     <div class="post-meta d-flex justify-content-between">
                         <div class="date">{{date('d M | Y', strtotime($latestBlog3->created_at))}}</div>
-                        <div class="category"><a href="blog-category.html">{{optional($latestBlog3->blogPostCategory)->name}}</a></div>
+                        <div class="category"><a href="{{$latestBlog3->getCategoryUrl()}}">{{optional($latestBlog3->blogPostCategory)->name}}</a></div>
                     </div><a href="{{$latestBlog2->getFrontUrl()}}">
                         <h3 class="h4">{{$latestBlog3->name}}</h3></a>
                     <p class="text-muted">{{$latestBlog3->description}}</p>
@@ -57,7 +57,7 @@
                 <div class="post-details">
                     <div class="post-meta d-flex justify-content-between">
                         <div class="date">{{date('d M | Y', strtotime($latestBlog4->created_at))}}</div>
-                        <div class="category"><a href="blog-category.html">{{optional($latestBlog4->blogPostCategory)->name}}</a></div>
+                        <div class="category"><a href="{{$latestBlog4->getCategoryUrl()}}">{{optional($latestBlog4->blogPostCategory)->name}}</a></div>
                     </div><a href="{{$latestBlog4->getFrontUrl()}}">
                         <h3 class="h4">{{$latestBlog4->name}}</h3></a>
                     <p class="text-muted">{{$latestBlog4->description}}</p>

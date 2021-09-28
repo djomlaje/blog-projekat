@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mail\ContactFormEmail;
 use App\Models\BlogPostCategory;
+use App\Models\Blog;
 
 class ContactController extends Controller
 {
@@ -16,9 +17,14 @@ class ContactController extends Controller
                 ->take(4)
                 ->get();
         
+        $newestFooterBlogPosts = Blog::where('status', '=', '1')
+                ->orderBy('created_at', 'desc')
+                ->take(3)->get();   
+        
         
         return view('front.contact.index', [
-            'footerCategories' => $footerCategories
+            'footerCategories' => $footerCategories,
+            'blogs' => $newestFooterBlogPosts
         ]);
     }
     

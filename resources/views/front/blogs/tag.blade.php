@@ -31,7 +31,7 @@
                                 </div>
                             </div><a href="{{$listingBlog->getFrontUrl()}}">
                                 <h3 class="h4">{{$listingBlog->name}}</h3></a>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <p class="text-muted">{{$listingBlog->description}}</p>
                             <footer class="post-footer d-flex align-items-center"><a href="{{$listingBlog->getAuthorUrl()}}" class="author d-flex align-items-center flex-wrap">
                                     <div class="avatar"><img src="{{$listingBlog->users->getPhotoUrl()}}" alt="..." class="img-fluid"></div>
                                     <div class="title"><span>{{$listingBlog->users->name}}</span></div></a>

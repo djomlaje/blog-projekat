@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-7">
                     <h1>{{$slider->title}}</h1>
-                    <a href="{{$slider->url}}" class="hero-link">Discover More</a>
+                    <a href="{{$slider->url}}" class="hero-link">{{$slider->urlTitle}}</a>
                 </div>
             </div>
         </div>

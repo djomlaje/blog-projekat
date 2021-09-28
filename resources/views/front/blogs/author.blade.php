@@ -36,7 +36,7 @@
                                     @endif</div>
                             </div><a href="{{$blog->getFrontUrl()}}">
                                 <h3 class="h4">{{$blog->name}}</h3></a>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <p class="text-muted">{{$blog->description}}</p>
                             <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
                                     <div class="avatar"><img src="{{$user->getPhotoUrl()}}" alt="..." class="img-fluid"></div>
                                     <div class="title"><span>{{$user->name}}</span></div></a>
