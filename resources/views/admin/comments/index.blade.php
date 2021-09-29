@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">@lang('All Comments')</h3>
-                        
+
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -46,38 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody id="sortable-list">
-                                @foreach($comments as $comment)
-                                <tr data-id="{{$comment->id}}">
-                                    <td>
-                                        <span style="display: none;" class="btn btn-outline-secondary handle">
-                                            <i class="fas fa-sort"></i>
-                                        </span>
-                                        #{{$comment->id}}
-                                    </td>
-                                    @if($comment->status == 1) 
-                                    <td class="text-center">
-                                        <span class="text-success">enabled</span>
-                                    </td>
-                                    @else 
-                                    <td class="text-center">
-                                        <span class="text-danger">disabled</span>
-                                    </td>
-                                    @endif
-                                    <td>
-                                        <strong>{{$comment->getBlogPostName()}}</strong>
-                                    </td>
-                                    <td>
-                                        <strong>{{$comment->name}}</strong>
-                                    </td>
-                                    <td style="width: 10%;">
-                                        {{\Str::limit($comment->description, 40)}}
-                                    </td>
-                                    <td class="text-center">{{$comment->created_at}}</td>
-                                    <td class="text-center">
-                                        @include('admin.comments.partials.actions')
-                                    </td>
-                                </tr>
-                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -135,20 +104,35 @@
 
 <script type="text/javascript">
 
-    
-    $('#entities-list-table').DataTable({
-        "order": [[5, 'desc']],
+
+    let entitiesDataTable = $('#entities-list-table').DataTable({
+        "serverSide": true,
+        "processing": true,
+        "ajax": {
+            "url": "{{route('admin.comments.datatable')}}",
+            "type": "post",
+            "data": function (dtData) {
+                dtData["_token"] = "{{csrf_token()}}";
+
+                dtData["id"] = $('#entities-filter-form [name="id"]').val();
+            }
+        },
+        "lengthMenu": [5, 10, 25, 50, 100, 250],
+        "pageLength": 10,
+        "order": [[5, "desc"]],
         "columns": [
-                {"name": "id"},
-                {"name": "status", "searchable": false},
-                {"name": "blog_post", "searchable": false},
-                {"name": "name", "searchable": false},
-                {"name": "description", "searchable": false},
-                {"name": "created_at", "searchable": false},
-                {"name": "actions", "orderable": false, "searchable": false}
+            {"name": "id", "data": "id"},
+            {"name": "status", "data": "status", "className": "text-center"},
+            {"name": "blog_post_name", "data": "blog_posts_name", "orderable": false},
+            {"name": "name", "data": "name"},
+            {"name": "description", "data": "description"},
+            {"name": "created_at", "data": "created_at"},
+            {"name": "actions", "data": "actions", "orderable": false, "searchable": false, "className": "text-center"}
         ]
     });
-    
+
+
+
     $('#entities-list-table').on('click', '[data-action="change"]', function (e) {
 
         let id = $(this).attr('data-id');
@@ -156,7 +140,7 @@
         $('#change-status-modal [name="id"]').val(id);
     });
 
-    
+
     $('#change-status-modal').on('submit', function (e) {
         e.preventDefault();
 
@@ -168,7 +152,8 @@
             "data": $(this).serialize()
         }).done(function (response) {
             toastr.success(response.system_message);
-            location.reload();
+
+            entitiesDataTable.ajax.reload(null, false);
         }).fail(function () {
             toastr.error("@lang('Greska prilikom mijenjanja statusa.')");
         });

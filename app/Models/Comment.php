@@ -18,7 +18,7 @@ class Comment extends Model
     public function blogPost()
     {
         return $this->belongsTo(
-            BlogPost::class,
+            Blog::class,
             'blog_post_id', //preneseni kljuc u tabeli deteta
             'id' //naziv kljuca u tabeli roditelja
         );
